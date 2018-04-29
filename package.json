@@ -2,6 +2,18 @@
   "name": "ngx-script-loader",
   "version": "0.1.0",
   "license": "MIT",
+  "author": {
+    "name": "Murat Çorlu",
+    "url": "https://github.com/muratcorlu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muratcorlu/ngx-script-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/muratcorlu/ngx-script-loader/issues"
+  },
+  "homepage": "https://github.com/muratcorlu/ngx-script-loader#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
