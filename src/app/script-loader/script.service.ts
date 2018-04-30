@@ -16,8 +16,9 @@ export class ScriptService {
    *
    * @param url Url of the external script to be loaded
    * @param attributes Attribute list to be added to the script element
+   * @param targetEl Target element for the placing script tag. It can be a selector or a element reference
    */
-  loadScript(url: string, attributes?: {[s: string]: string}): Observable<Event> {
+  loadScript(url: string, attributes?: {[s: string]: string}, targetEl: HTMLElement | string = 'head' ): Observable<Event> {
     if (url in this.scriptsLoaders) {
       return this.scriptsLoaders[url];
     }
@@ -44,7 +45,8 @@ export class ScriptService {
           observer.error(err);
         };
 
-        document.getElementsByTagName('head')[0].appendChild(script);
+        const targetElement: HTMLElement = typeof targetEl === 'string' ? document.querySelector(targetEl) : targetEl;
+        targetElement.appendChild(script);
       })
       .take(1)
       .shareReplay(1);
