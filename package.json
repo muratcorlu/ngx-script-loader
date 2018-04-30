@@ -1,6 +1,6 @@
 {
   "name": "ngx-script-loader",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "author": {
     "name": "Murat Çorlu",
@@ -21,7 +21,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "package": "ng-packagr -p package.json"
+    "package": "ng-packagr -p package.json",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "peerDependencies": {
     "@angular/common": "^5.2.0",
@@ -56,7 +58,9 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "typescript": "~2.5.3",
+    "semantic-release": "^15.1.8",
+    "travis-deploy-once": "^5.0.0"
   },
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "ngPackage": {
