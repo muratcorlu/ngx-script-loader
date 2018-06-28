@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { ScriptLoaderModule } from './script-loader/script-loader.module';
 
+import { AppComponent } from './app.component';
+import { ScriptLoaderModule } from 'ngx-script-loader';
 
 @NgModule({
   declarations: [
@@ -10,10 +10,9 @@ import { ScriptLoaderModule } from './script-loader/script-loader.module';
   ],
   imports: [
     BrowserModule,
-    ScriptLoaderModule
+    ScriptLoaderModule.forRoot()
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
