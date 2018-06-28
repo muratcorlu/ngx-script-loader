@@ -1,5 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { ScriptService } from './script.service';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScriptComponent } from './script.component';
 
@@ -14,13 +13,4 @@ import { ScriptComponent } from './script.component';
     ScriptComponent
   ]
 })
-export class ScriptLoaderModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: ScriptLoaderModule,
-      providers: [
-        ScriptService
-      ]
-    };
-  }
-}
+export class ScriptLoaderModule {}
