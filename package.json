@@ -4,12 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod ngx-script-loader",
-    "test": "ng test  ngx-script-loader",
-    "lint": "ng lint",
+    "build": "ng build ngx-script-loader --prod",
+    "test": "ng test ngx-script-loader",
+    "lint": "ng lint ngx-script-loader",
     "e2e": "ng e2e",
-    "semantic-release": "semantic-release",
-    "travis-deploy-once": "travis-deploy-once"
+    "publish": "npm publish ./dist/ngx-script-loader"
   },
   "dependencies": {
     "@angular/common": "^6.0.3",

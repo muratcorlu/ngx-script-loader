@@ -30,4 +30,4 @@ script:
   - xvfb-run -a npm run test
   - xvfb-run -a npm run build
 after_success:
-  - npm publish .\dist\ngx-script-loader\
+  - npm run publish
