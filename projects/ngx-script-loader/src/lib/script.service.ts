@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import { take, shareReplay } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ScriptService {
 
   constructor(@Inject(DOCUMENT) private _document: any) {}
