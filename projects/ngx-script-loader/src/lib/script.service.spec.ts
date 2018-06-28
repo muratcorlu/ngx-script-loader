@@ -20,7 +20,7 @@ describe('ScriptService', () => {
   });
 
   it('should inject the script', () => {
-    const scriptUrl = 'http://example.com/';
+    const scriptUrl = 'http://example.com';
     service.loadScript(scriptUrl).subscribe();
 
     expect(document.querySelector('head script').getAttribute('src')).toBe(scriptUrl);
