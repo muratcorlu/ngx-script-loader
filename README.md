@@ -25,7 +25,7 @@ import { ScriptLoaderModule } from 'ngx-script-loader';
   ....
   imports: [
     ...,
-    ScriptLoaderModul
+    ScriptLoaderModule
   ],
 ```
 
