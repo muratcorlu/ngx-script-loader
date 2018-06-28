@@ -4,11 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "build": "ng build --prod ngx-script-loader",
+    "test": "ng test  ngx-script-loader",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "package": "ng build --prod ngx-script-loader",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
