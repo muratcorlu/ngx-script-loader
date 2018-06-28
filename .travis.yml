@@ -1,29 +1,33 @@
-sudo: false
+sudo: required
 dist: trusty
 language: node_js
-
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 cache:
   directories:
     - node_modules
-
-addons:
-  chrome: stable
-
+branches:
+  only:
+    - master
+notifications:
+  email: false
 node_js:
-  - "8"
-
-matrix:
-  fast_finish: true
-
-before_install:
-  - npm install npm@5 -g
-  - npm cache verify
-  - npm prune
-  - npm update
-
+  - stable
 install:
-  - npm install
+  - npm i
 
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+  - npm prune
 script:
-  - npm test
-  - npm run package
+  - export CHROME_BIN=chromium-browser
+  - xvfb-run -a npm run test
+  - xvfb-run -a npm run build
+after_success:
+  - npm publish .\dist\ngx-script-loader\
