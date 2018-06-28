@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ScriptService } from './script.service';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 describe('ScriptService', () => {
   let service: ScriptService;
