@@ -25,7 +25,7 @@ import { ScriptLoaderModule } from 'ngx-script-loader';
   ....
   imports: [
     ...,
-    ScriptLoaderModule
+    ScriptLoaderModule.forRoot()
   ],
 ```
 
@@ -101,7 +101,7 @@ It's also possible to use `retry` method of RxJS to retry injection script when 
 
 ```ts
 import { ScriptService } from 'ngx-script-loader';
-import 'rxjs/add/operator/retry';
+import { retry } from 'rxjs/operators';
 
 @Component({
   ...
@@ -109,7 +109,9 @@ import 'rxjs/add/operator/retry';
 export class ExampleComponet {
   constructor(private scriptService: ScriptService) {
     this.scriptService.loadScript('https://connect.facebook.net/en_US/sdk.js')
-      .retry(1)
+      .pipe(
+        retry(1)
+      )
       .subscribe(() => {
         console.log("I'm ready to work with FB SDK");
       }, (error) => {
@@ -143,7 +145,7 @@ this.scriptService.loadScript('https://menus.singleplatform.com/widget', {
 }, '#menu-container').subscribe();
 ```
 
-or 
+or
 
 ```ts
 import { ScriptService } from 'ngx-script-loader';

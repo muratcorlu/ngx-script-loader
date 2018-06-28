@@ -1,8 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ScriptService } from './script-loader/script.service';
+import { ScriptService } from 'ngx-script-loader';
 
 @Component({
-  selector: 'ngx-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
