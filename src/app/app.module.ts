@@ -10,7 +10,7 @@ import { ScriptLoaderModule } from 'ngx-script-loader';
   ],
   imports: [
     BrowserModule,
-    ScriptLoaderModule.forRoot()
+    ScriptLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
