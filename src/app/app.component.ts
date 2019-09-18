@@ -9,7 +9,7 @@ import { ScriptService } from 'ngx-script-loader';
 export class AppComponent {
   title = 'app';
 
-  @ViewChild('menuContainer') menuContainer: ElementRef;
+  @ViewChild('menuContainer', { static: true }) menuContainer: ElementRef;
 
   constructor(private scriptService: ScriptService) {
   }
