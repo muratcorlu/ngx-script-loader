@@ -1,9 +1,23 @@
-language : node_js
-sudo: required
+dist: trusty
+sudo: false
+
+language: node_js
+node_js:
+  - "10"
+
 addons:
-  chrome: stable
-node_js : 11.10.0
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+cache:
+  directories:
+     - ./node_modules
+
 install:
- - npm install
+  - npm install
+
 script:
- - npm test
+  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
