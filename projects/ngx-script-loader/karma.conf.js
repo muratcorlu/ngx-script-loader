@@ -25,7 +25,16 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+    browsers: ['ChromeCI'],
+    singleRun: false,
+
+    customLaunchers: {
+      ChromeCI: {
+        base: 'ChromeHeadless',
+        // We must disable the Chrome sandbox when running Chrome inside Docker (Chrome's sandbox needs
+        // more permissions than Docker allows by default)
+        flags: ['--no-sandbox']
+      }
+    }
   });
 };
