@@ -26,6 +26,11 @@ export class AppComponent {
       .subscribe(this.widgetLoaded, this.widgetLoadFailed);
   }
 
+  runScript() {
+    this.scriptService.runScript('https://menus.singleplatform.com/widget', this.spWidgetAttributes, this.menuContainer.nativeElement)
+      .subscribe(this.widgetLoaded, this.widgetLoadFailed);
+  }
+
   widgetLoaded(event: Event) {
     console.log('Loaded', event);
   }

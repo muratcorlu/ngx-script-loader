@@ -14,14 +14,8 @@ export class ScriptService {
     [url: string]: Observable<Event>
   } = {};
 
-  /**
-   *
-   * @param url Url of the external script to be loaded
-   * @param attributes Attribute list to be added to the script element
-   * @param targetEl Target element for the placing script tag. It can be a selector or a element reference
-   */
-  loadScript(url: string, attributes?: {[s: string]: string}, targetEl: HTMLElement | string = 'head' ): Observable<Event> {
-    return this.scriptsLoaders[url] = this.scriptsLoaders[url] || new Observable<Event>((observer) => {
+  private _loadScript(url: string, attributes?: {[s: string]: string}, targetEl: HTMLElement | string = 'head' ): Observable<Event> {
+    return new Observable<Event>((observer) => {
       const script: HTMLScriptElement = this._document.createElement('script');
 
       if (attributes) {
@@ -45,10 +39,34 @@ export class ScriptService {
 
       const targetElement: HTMLElement = typeof targetEl === 'string' ? this._document.querySelector(targetEl) : targetEl;
       targetElement.appendChild(script);
-    })
-    .pipe(
-      take(1),
-      shareReplay(1)
-    );
+    });
+  }
+
+  /**
+   * Injects script from given url to target place in DOM
+   * This method loads script from same url once.
+   *
+   * @param url Url of the external script to be loaded
+   * @param attributes Attribute list to be added to the script element
+   * @param targetEl Target element for the placing script tag. It can be a selector or a element reference
+   */
+  loadScript(url: string, attributes?: {[s: string]: string}, targetEl: HTMLElement | string = 'head' ): Observable<Event> {
+    return this.scriptsLoaders[url] = this.scriptsLoaders[url] || this._loadScript(url, attributes, targetEl)
+      .pipe(
+        take(1),
+        shareReplay(1)
+      );
+  }
+
+  /**
+   * Injects script from given url to target place in DOM
+   * If you call this method for same url multiple times, it will inject same code to document multiple times.
+   *
+   * @param url Url of the external script to be loaded
+   * @param attributes Attribute list to be added to the script element
+   * @param targetEl Target element for the placing script tag. It can be a selector or a element reference
+   */
+  runScript(url: string, attributes?: {[s: string]: string}, targetEl: HTMLElement | string = 'head'): Observable<Event> {
+    return this._loadScript(url, attributes, targetEl);
   }
 }

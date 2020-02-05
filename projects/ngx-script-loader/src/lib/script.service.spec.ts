@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ScriptService } from './script.service';
 import { DOCUMENT } from '@angular/common';
+import { combineLatest } from 'rxjs';
 
 describe('ScriptService', () => {
   let service: ScriptService;
@@ -13,24 +14,61 @@ describe('ScriptService', () => {
 
     service = TestBed.get(ScriptService);
     document = TestBed.get(DOCUMENT);
+
+    document.querySelectorAll('head script[src$="example.com"]').forEach((item) => item.remove());
+    document.querySelectorAll('body script[src$="example.com"]').forEach((item) => item.remove());
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should inject the script', () => {
-    const scriptUrl = 'http://example.com';
-    service.loadScript(scriptUrl).subscribe();
+  describe('loadScript', () => {
+    it('should inject the script', (done) => {
+      const scriptUrl = 'http://example.com';
+      service.loadScript(scriptUrl).subscribe(() => {
+        expect(document.querySelector('head script').getAttribute('src')).toBe(scriptUrl);
+        done();
+      });
+    });
 
-    expect(document.querySelector('head script').getAttribute('src')).toBe(scriptUrl);
+    it('should inject the script to correct target', (done) => {
+      const scriptUrl = 'http://example.com';
+      service.loadScript(scriptUrl, {}, 'body').subscribe(() => {
+        expect(document.querySelector('body script[src$="example.com"]')).not.toBeNull();
+        done();
+      });
+    });
   });
 
+  describe('runScript', () => {
+    it('should inject the script', (done) => {
+      const scriptUrl = 'http://example.com';
+      service.runScript(scriptUrl).subscribe(() => {
+        expect(document.querySelector('head script').getAttribute('src')).toBe(scriptUrl);
+        done();
+      });
+    });
 
-  it('should inject the script to correct target', () => {
-    const scriptUrl = 'http://example.com';
-    service.loadScript(scriptUrl, {}, 'body').subscribe();
+    it('should inject the script to correct target', (done) => {
+      const scriptUrl = 'http://example.com';
+      service.runScript(scriptUrl, {}, 'body').subscribe(() => {
+        expect(document.querySelector('body script[src$="example.com"]')).not.toBeNull();
+        done();
+      });
+    });
 
-    expect(document.querySelector('body script[src$="example.com"]')).not.toBeNull();
+    it('should inject multiple script if you call runScript multiple times', (done) => {
+      const scriptUrl = 'http://example.com';
+
+      combineLatest(
+        service.runScript(scriptUrl, {}, 'body'),
+        service.runScript(scriptUrl, {}, 'body'),
+        service.runScript(scriptUrl, {}, 'body')
+      ).subscribe(() => {
+        expect(document.querySelectorAll('body script[src$="example.com"]').length).toBe(3);
+        done();
+      });
+    });
   });
 });

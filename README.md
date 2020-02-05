@@ -1,6 +1,6 @@
 # ngx-script-loader - Angular Script Loader
 
-[![NPM Package](https://badge.fury.io/js/ngx-script-loader.svg)](https://npmjs.org/package/ngx-script-loader) [![Build Status](https://travis-ci.org/muratcorlu/ngx-script-loader.svg?branch=master)](https://travis-ci.org/muratcorlu/ngx-script-loader) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![NPM Package](https://badge.fury.io/js/ngx-script-loader.svg)](https://npmjs.org/package/ngx-script-loader) [![Build Status](https://travis-ci.org/muratcorlu/ngx-script-loader.svg?branch=master)](https://travis-ci.org/muratcorlu/ngx-script-loader) [![codecov](https://codecov.io/gh/muratcorlu/ngx-script-loader/branch/master/graph/badge.svg)](https://codecov.io/gh/muratcorlu/ngx-script-loader) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 `ngx-script-loader` presents a simple `ScriptService` for [Angular](https://angular.io) apps to load 3rd party scripts programmatically.
 
@@ -201,3 +201,24 @@ class ExampleComponent {
   }
 }
 ```
+
+## Running a script multiple times
+
+By default `loadScript()` method loads a script only once in a session. If you want to inject same script multiple times, you can use `runScript()` method instead.
+
+```ts
+import { ScriptService } from 'ngx-script-loader';
+
+@Component({
+  ...
+})
+export class ExampleComponent {
+  constructor(private scriptService: ScriptService) {
+    this.scriptService.runScript('https://example.com/random-news.js', {}, '#news-area').subscribe();
+    this.scriptService.runScript('https://example.com/random-news.js', {}, '#news-area').subscribe();
+    this.scriptService.runScript('https://example.com/random-news.js', {}, '#news-area').subscribe();
+  }
+}
+```
+
+All of the parameters of `runScript()` are same with `loadScript()`.

@@ -19,10 +19,10 @@
     ],
     "paths": {
       "ngx-script-loader": [
-        "dist/ngx-script-loader"
+        "projects/ngx-script-loader/src/public_api"
       ],
       "ngx-script-loader/*": [
-        "dist/ngx-script-loader/*"
+        "projects/ngx-script-loader/src/lib/*"
       ]
     }
   }

@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build ngx-script-loader --prod && npm run copy-readme",
-    "test": "ng test ngx-script-loader --no-watch",
+    "test": "ng test ngx-script-loader --no-watch --code-coverage",
     "lint": "ng lint ngx-script-loader",
     "e2e": "ng e2e",
     "publish": "npm publish ./dist/ngx-script-loader",
@@ -38,6 +38,7 @@
     "@angular/platform-browser-dynamic": "^8.2.6",
     "@angular/router": "^8.2.6",
     "core-js": "^2.5.4",
+    "ngx-script-loader": "./projects/ngx-script-loader",
     "rxjs": "^6.5.3",
     "zone.js": "^0.9.1"
   },

@@ -1,5 +1,6 @@
 <button *ngIf="!showWidget" (click)="showWidget=true">Load widget with component</button>
 <button *ngIf="!showWidget" (click)="serviceExample()">Load widget with service</button>
+<button (click)="showWidget=false;runScript()">(Load and) Run external script</button>
 
 <div #secondMenu *ngIf="showWidget">
   <ngx-script src="https://menus.singleplatform.com/widget"
