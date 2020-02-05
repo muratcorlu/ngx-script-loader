@@ -1,23 +1,28 @@
-dist: trusty
-sudo: false
-
 language: node_js
+
 node_js:
-  - "10"
+  - 12
+  - 10
+  - 8
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
-cache:
-  directories:
-     - ./node_modules
+  chrome: stable
 
 install:
-  - npm install
+  - travis_retry npm install
 
 script:
-  - npm run test -- --no-watch --no-progress
+  - npm run test
+  - npm run build
+
+after_success:
+  - npm run codecov
+
+deploy:
+  provider: script
+  node_js: lts/*
+  skip_cleanup: true
+  on:
+    branch: master
+  script:
+    - npm run semantic-release

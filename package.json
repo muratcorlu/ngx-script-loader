@@ -5,11 +5,27 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build ngx-script-loader --prod && npm run copy-readme",
-    "test": "ng test ngx-script-loader",
+    "test": "ng test ngx-script-loader --no-watch",
     "lint": "ng lint ngx-script-loader",
     "e2e": "ng e2e",
     "publish": "npm publish ./dist/ngx-script-loader",
-    "copy-readme": "cpx \"./README.md\" \"./dist/ngx-script-loader\""
+    "copy-readme": "cpx \"./README.md\" \"./dist/ngx-script-loader\"",
+    "semantic-release-pre": "semantic-release pre",
+    "semantic-release-post": "semantic-release post",
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./dist/ngx-script-loader"
+        }
+      ]
+    ]
   },
   "dependencies": {
     "@angular/common": "^8.2.6",
@@ -26,19 +42,20 @@
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^8.2.6",
-    "@angular-devkit/build-ng-packagr": "~0.803.4",
     "@angular-devkit/build-angular": "~0.803.4",
-    "ng-packagr": "^5.5.1",
-    "tsickle": ">=0.25.5",
-    "tslib": "^1.9.0",
-    "typescript": "~3.5.3",
+    "@angular-devkit/build-ng-packagr": "~0.803.4",
     "@angular/cli": "~8.3.4",
+    "@angular/compiler-cli": "^8.2.6",
     "@angular/language-service": "^8.2.6",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/github": "^7.0.2",
+    "@semantic-release/npm": "^7.0.2",
+    "@semantic-release/release-notes-generator": "^9.0.0",
     "@types/jasmine": "~3.3.5",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.12.18",
     "codelyzer": "~5.1.0",
+    "cpx": "^1.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.4",
@@ -46,9 +63,13 @@
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "ng-packagr": "^5.5.1",
     "protractor": "~5.4.2",
+    "semantic-release": "^17.0.2",
     "ts-node": "~7.0.1",
+    "tsickle": ">=0.25.5",
+    "tslib": "^1.9.0",
     "tslint": "~5.12.1",
-    "cpx": "^1.5.0"
+    "typescript": "~3.5.3"
   }
 }
