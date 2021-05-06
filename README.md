@@ -16,6 +16,7 @@ With yarn:
 yarn add ngx-script-loader
 ```
 
+Note: v2 tested with Angular 11. You can use v1.x if you want to use with older versions of Angular (supports from Angular v6).
 ## Usage
 
 Import `ScriptLoaderModule` to your app.
