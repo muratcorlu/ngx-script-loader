@@ -149,7 +149,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-script-loader/src/test.ts",
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/ngx-script-loader/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-script-loader/karma.conf.js"
           }
@@ -168,6 +168,5 @@
         }
       }
     }
-  },
-  "defaultProject": "ngx-script-loader-app"
+  }
 }
