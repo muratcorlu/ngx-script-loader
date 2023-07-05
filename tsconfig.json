@@ -10,7 +10,7 @@
     "module": "es2020",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "ES2022",
+    "target": "es2020",
     "typeRoots": [
       "node_modules/@types"
     ],
