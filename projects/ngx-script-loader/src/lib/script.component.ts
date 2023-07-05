@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-native */
 import { Component, OnInit, Input, ElementRef, Output, EventEmitter } from '@angular/core';
 import { ScriptService } from './script.service';
 
